@@ -18,7 +18,7 @@ password=$(printf '%s\n' "${password_files[@]}" | wofi --dmenu "$@")
 [[ -n $password ]] || exit
 
 if [[ $typeit -eq 0 ]]; then
-	gopass -c "$password" 2>/dev/null
+	gopass show -c "$password" 2>/dev/null
 else
 	pass show "$password" | { IFS= read -r pass; printf %s "$pass"; } |
 		ydotool type --clearmodifiers --file -
